@@ -1,0 +1,1085 @@
+/* ================= Design tokens ================= */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f5f4f1;
+  --ink: #0c0c0b;
+  --ink-soft: #4a4844;
+  --ink-faint: #8a877f;
+  --line: rgba(12, 12, 11, 0.1);
+  --card-dark: #121212;
+  --card-dark-2: #1c1a18;
+  --surface: #ffffff;
+  --accent: #0c0c0b;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+
+  --font-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --nav-h: 80px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.label-mono, .eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ================= Standalone logo + floating pill nav ================= */
+/* Soft fade behind the fixed nav — not a card/box, just enough to keep
+   scrolling content from visually colliding with the nav text as it
+   passes underneath. */
+.nav-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--bg) 65%, transparent);
+  z-index: 99;
+  pointer-events: none;
+}
+.site-logo {
+  position: fixed;
+  top: 26px;
+  left: 40px;
+  z-index: 101;
+  display: block;
+}
+.site-logo img {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+.pillnav {
+  position: fixed;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.pillnav .links {
+  display: flex;
+  gap: 34px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pillnav .links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  position: relative;
+  padding-bottom: 6px;
+  transition: color 0.25s ease;
+}
+.pillnav .links a::before {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: width 0.3s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+.pillnav .links a:hover { color: var(--ink); }
+.pillnav .links a:hover::before { width: 100%; }
+.pillnav .links a.active { color: var(--ink); }
+.pillnav .links a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: -2px;
+  transform: translateX(-50%);
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.nav-burger {
+  display: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  align-items: center; justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .pillnav .links { display: none; }
+  .nav-burger { display: flex; }
+}
+
+/* ================= Layout: sidebar + content ================= */
+.page-shell {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  padding-top: calc(var(--nav-h) + 40px);
+  min-height: 100vh;
+}
+/* Used on the home page, where this wraps the section below the hero —
+   the hero already cleared the fixed nav, so no extra top clearance here. */
+.page-shell-no-nav-gap { padding-top: 70px; min-height: 0; }
+.sidebar {
+  padding: 0 32px 40px 48px;
+  position: sticky;
+  top: calc(var(--nav-h) + 40px);
+  align-self: start;
+  height: calc(100vh - var(--nav-h) - 40px);
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.dept-list { list-style: none; margin: 0 0 36px; padding: 0; }
+.dept-list li { margin-bottom: 10px; }
+.dept-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+  padding: 4px 0;
+}
+.dept-list a.active { color: var(--ink); font-weight: 600; }
+.dept-list a.active::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+
+.topic-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
+.topic-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 6px 12px;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.topic-tag.active { color: var(--bg); background: var(--ink); border-color: var(--ink); }
+
+.index-list { list-style: none; margin: 0; padding: 0; flex: 1; }
+.index-list li a {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.index-list li a .n { font-family: var(--font-mono); color: var(--ink-faint); }
+.index-list li a:hover { color: var(--ink); }
+
+.sidebar-footer {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+.sidebar .copyright {
+  margin-top: 14px;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 1000px) {
+  .page-shell { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static;
+    height: auto;
+    padding: 0 24px 32px;
+  }
+}
+
+.content { padding: 0 48px 100px 0; min-width: 0; }
+@media (max-width: 1000px) {
+  .content { padding: 0 24px 80px; }
+}
+
+/* ================= Full-bleed shell (home page only — no sidebar) ================= */
+.content-full { padding: calc(var(--nav-h) + 14px) 48px 0; }
+@media (max-width: 1000px) {
+  .content-full { padding: calc(var(--nav-h) + 12px) 24px 0; }
+}
+
+/* ================= Buttons (used in hero CTA, contact page) ================= */
+.hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary, .explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 14px 22px;
+  transition: transform 0.3s cubic-bezier(0.22, 0.9, 0.32, 1), box-shadow 0.3s ease;
+}
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(0,0,0,0.4); }
+.explore-btn { border: 1px solid var(--line); }
+.explore-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(0,0,0,0.2); }
+.explore-btn .arrow-circ {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+.explore-btn:hover .arrow-circ { transform: rotate(45deg); }
+
+/* Full-width horizontal divider spanning the entire hero, with the label
+   above it and an animated marker sweeping the length of the line. */
+.scroll-cue {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  padding: 0 48px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.scroll-cue span:first-child { display: block; margin-bottom: 14px; }
+.scroll-cue-line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-cue-line::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -20%;
+  width: 20%; height: 100%;
+  background: var(--ink);
+  animation: scrollCueSweep 2.6s ease-in-out infinite;
+}
+@keyframes scrollCueSweep {
+  0% { left: -20%; }
+  50% { left: 100%; }
+  100% { left: -20%; }
+}
+@media (max-width: 640px) {
+  .scroll-cue { padding: 0 24px 32px; }
+}
+
+/* ================= Hero ================= */
+.hero-mondragon {
+  position: relative;
+  padding: 24px 0 0;
+  height: calc(100vh - var(--nav-h) - 14px);
+  min-height: calc(100vh - var(--nav-h) - 14px);
+  display: flex;
+  flex-direction: column;
+  /* Centered, but only within the band between the ticker and the bottom
+     bar: padding-top/bottom reserve exactly their (absolutely-positioned,
+     out-of-flow) footprints, so justify-content:center balances the copy
+     block between them instead of within the hero's full height. */
+  justify-content: center;
+  padding-top: 66px;
+  padding-bottom: 150px;
+  overflow: hidden;
+}
+
+/* -- Premium editorial ticker: oversized kinetic typography mixed with
+   floating project preview cards, continuous GSAP-driven scroll (never
+   pauses — main.js drives .hm-ticker-track's transform via GSAP), star
+   separators between every item, edge-fade mask. Hovering any word/card
+   dims everything else to 20% opacity and gives the hovered item a soft
+   blurred pill background + flanking arrows. -- */
+.hm-ticker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.hm-ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+/* Fallback if the GSAP CDN fails to load (main.js applies this class name
+   as an inline animation) — same seamless -50% loop, just CSS-driven. */
+@keyframes hmTickerFallback {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.hm-t-sep {
+  font-size: 1.1rem;
+  color: var(--ink-faint);
+  margin: 0 26px;
+  flex-shrink: 0;
+  transition: opacity 0.4s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+
+.hm-t-word {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(0.6rem, 1.3vw, 1.25rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+  padding: 8px 12px;
+  transition: opacity 0.4s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+.hm-t-word::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg-alt);
+  border-radius: 100px;
+  box-shadow: 0 0 46px 16px rgba(0,0,0,0.045);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.4s cubic-bezier(0.22, 0.9, 0.32, 1), transform 0.4s cubic-bezier(0.22, 0.9, 0.32, 1);
+  z-index: -1;
+}
+.hm-t-word:hover::before { opacity: 1; transform: scale(1); }
+.hm-t-arrow {
+  display: inline-block;
+  font-size: 0.4em;
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+.hm-t-arrow.left { margin-right: 12px; transform: translateX(10px); }
+.hm-t-arrow.right { margin-left: 12px; transform: translateX(-10px); }
+.hm-t-word:hover .hm-t-arrow.left,
+.hm-t-word:hover .hm-t-arrow.right { opacity: 0.55; transform: translateX(0); }
+
+.hm-t-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 62px;
+  height: 34px;
+  margin: 0 5px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -18px rgba(0,0,0,0.35);
+  transform: rotate(var(--tilt));
+  transition: transform 0.45s cubic-bezier(0.22, 0.9, 0.32, 1), box-shadow 0.4s ease, opacity 0.4s ease;
+}
+.hm-t-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.94);
+  transition: filter 0.4s ease;
+}
+.hm-t-card:hover { transform: rotate(0deg) scale(1.03); box-shadow: 0 30px 55px -16px rgba(0,0,0,0.45); }
+.hm-t-card:hover img { filter: brightness(1.05); }
+
+/* Hovering anywhere in the track dims every item to 20% opacity; the
+   hovered item itself is pulled back to full via a higher-specificity
+   rule (:hover nested inside :hover) so it wins over the dim-everything
+   rule regardless of source order. */
+.hm-ticker-track:hover .hm-t-word,
+.hm-ticker-track:hover .hm-t-card,
+.hm-ticker-track:hover .hm-t-sep {
+  opacity: 0.2;
+}
+.hm-ticker-track:hover .hm-t-word:hover,
+.hm-ticker-track:hover .hm-t-card:hover {
+  opacity: 1;
+}
+
+/* -- Draggable 3D ring carousel: same technique as Framer's
+   EditableDirectionalCarousel — a preserve-3d ring, each card at
+   rotateY(angle) translateZ(radius), spun by dragging or auto-rotating
+   (JS in main.js). Right side, sitting just behind the text (z-index 1 of
+   2 — second-to-last in the hero's own stack). Each card's box is sized
+   to its cover photo's real aspect ratio at build time, so nothing crops —
+   the box already matches the image 100%. -- */
+.hm-dcarousel {
+  position: absolute;
+  top: -35px;
+  right: 20px;
+  width: 48%;
+  max-width: 650px;
+  aspect-ratio: 1 / 1;
+  perspective: 900px;
+  z-index: 1;
+  opacity: 0;
+  animation: hmFadeUp 1.1s ease .1s forwards;
+}
+/* Ambient floor glow the ring sits in — grounds the whole composition and
+   reads as depth/light even when no single card is highlighted. */
+.hm-dcarousel::before {
+  content: "";
+  position: absolute;
+  left: 10%; right: 10%;
+  bottom: 4%;
+  height: 30%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.05) 55%, transparent 78%);
+  filter: blur(10px);
+  z-index: 0;
+  pointer-events: none;
+}
+.hm-dc-ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  cursor: grab;
+  touch-action: none;
+  z-index: 1;
+}
+.hm-dc-ring.dragging { cursor: grabbing; }
+.hm-dc-item {
+  position: absolute;
+  top: 50%; left: 50%;
+  backface-visibility: hidden;
+  --dc-scale: 1;
+  transform: rotateY(var(--ry)) translateZ(var(--rz)) rotateX(var(--tilt)) scale(var(--dc-scale));
+  transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+/* Rounding/clipping lives on the link, not the item, so the reflection
+   below (positioned outside the item's own box) doesn't get clipped too. */
+.hm-dc-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 55px -20px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.06) inset;
+  background: #000;
+  transition: box-shadow 0.5s ease;
+}
+.hm-dc-item.is-front a {
+  box-shadow:
+    0 40px 70px -18px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,255,255,0.14) inset;
+}
+.hm-dc-item img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; transition: filter 0.5s ease; }
+.hm-dc-item:not(.is-front) img { filter: brightness(0.82) saturate(0.85); }
+.hm-dc-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 14px 16px;
+  color: #f4f2ec;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.hm-dc-item.is-front .hm-dc-caption { opacity: 1; transform: translateY(0); }
+.hm-dc-caption-title { font-size: 0.95rem; font-weight: 600; }
+
+/* -- Reflection: a mirrored image duplicate breaks down visually once a
+   card isn't facing the camera (the ring keeps rotating), so this is a
+   soft grounding shadow instead — an ellipse that fades out, which reads
+   correctly at every rotation angle rather than just the front-facing one. -- */
+.hm-dc-reflect {
+  position: absolute;
+  top: 100%;
+  left: 10%;
+  width: 80%;
+  height: 22px;
+  margin-top: 10px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.08) 55%, transparent 80%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.hm-main {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  align-items: start;
+  /* Empty grid-cell space (and the hidden disciplines column) would
+     otherwise sit above the carousel and swallow clicks meant for it —
+     see .hm-copy-block for the matching re-enable on actual content. */
+  pointer-events: none;
+}
+
+@keyframes hmFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hm-anim { opacity: 0; animation: hmFadeUp 0.8s cubic-bezier(0.22, 0.9, 0.32, 1) forwards; }
+
+/* Hidden for now (client request) — only one discipline (Graphic Design) is
+   live, so a "Disciplines" list doesn't make sense yet. Not deleted —
+   revisit once Motion/Video are ready. */
+.hm-disc-card { visibility: hidden; }
+
+/* -- Disciplines list, top-left. No card/box — plain text on the page. -- */
+.hm-disc-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.hm-disc-list a {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  position: relative;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+.hm-disc-list a::before {
+  content: "→";
+  position: absolute;
+  left: -22px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-6px);
+}
+.hm-disc-list a:hover { color: var(--ink); padding-left: 22px; }
+.hm-disc-list a:hover::before { opacity: 1; transform: translateX(0); }
+
+/* -- Copy block: kicker + services side by side (services starts right at
+   the kicker's edge, not pushed to the page's right edge), photo + name,
+   CTA row -- */
+/* hm-copy-block's rows are block/flex boxes that stretch to fill their
+   grid column even where there's no visible text (especially now that the
+   text is shifted left of that column) — at full opacity that invisible
+   area sits above the carousel (z-index 2 vs 1) and swallows clicks meant
+   for the cards underneath. Turn off hit-testing on the block itself and
+   re-enable it only on the actual interactive/hoverable pieces. */
+.hm-copy-block { padding-top: 8px; pointer-events: none; }
+.hm-copy-block a, .hm-copy-block .hm-photo { pointer-events: auto; }
+.hm-disc-list a { pointer-events: auto; }
+/* Pulled left into the (hidden) disciplines column's reserved space, so the
+   title/body/photo/name sit clear of the carousel — the CTA row is
+   deliberately left out of this shift and stays at the copy-block's normal
+   left edge. */
+.hm-role-row, .hm-name-row { margin-left: -164px; }
+.hm-role-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 6px;
+}
+.hm-services {
+  /* Hidden for now (client request) — not deleted, just not shown. */
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-top: -40px;
+}
+.hm-kicker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 42ch;
+  margin-bottom: 0;
+}
+.hm-kicker-title {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.08;
+  color: var(--ink);
+}
+.hm-kicker-desc {
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.hm-name-row { display: flex; align-items: flex-end; gap: 24px; }
+.hm-photo {
+  width: 150px; height: 140px;
+  border-radius: 10px;
+  object-fit: cover;
+  filter: grayscale(1);
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+  position: relative;
+  top: 16px;
+  transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+.hm-photo:hover { filter: grayscale(0); transform: scale(1.03); }
+.hm-name {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 0.98;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.hm-name-line { display: block; }
+.hm-name-sub {
+  margin-top: 2px;
+  font-size: 0.28em;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+
+.hm-cta-row {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.hm-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 11px 18px;
+  white-space: nowrap;
+}
+.hm-status-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3fbf6a;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(63, 191, 106, 0.18);
+}
+.hm-status-badge .dot-emoji { font-size: 0.75em; line-height: 1; }
+@media (max-width: 640px) {
+  .hm-status-badge { white-space: normal; }
+}
+.hm-cta-socials {
+  display: flex;
+  justify-content: flex-start;
+  gap: 18px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.hm-cta-socials a { position: relative; transition: color 0.25s ease; }
+.hm-cta-socials a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: width 0.3s ease;
+}
+.hm-cta-socials a:hover { color: var(--ink); }
+.hm-cta-socials a:hover::after { width: 100%; }
+
+.hm-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 72px;
+  z-index: 2;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 24px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.hm-bottom-facts { display: flex; flex-direction: column; gap: 4px; }
+.hm-bottom .hm-note { text-align: center; max-width: 46ch; margin: 0 auto; }
+.hm-bottom .hm-contact { text-align: right; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+.hm-bottom .hm-contact a { position: relative; transition: color 0.25s ease; }
+.hm-bottom .hm-contact a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: width 0.3s ease;
+}
+.hm-bottom .hm-contact a:hover { color: var(--ink); }
+.hm-bottom .hm-contact a:hover::after { width: 100%; }
+
+@media (max-width: 1100px) {
+  .hm-main { grid-template-columns: 1fr; }
+  .hm-role-row, .hm-name-row { margin-left: 0; }
+  .hm-dcarousel { position: static; width: 100%; max-width: 100%; margin-top: 32px; }
+  /* The fixed-height, absolutely-anchored desktop layout (hero pinned to
+     exactly one screen, bottom bar/scroll-cue pinned to its bottom edge)
+     doesn't have room to work on small screens — it was clipping the name
+     and overlapping the bottom bar directly on top of the photo. Below
+     this breakpoint, let the hero grow to fit its content and put the
+     bottom bar/scroll-cue back in normal document flow, stacked below. */
+  .hero-mondragon { height: auto; min-height: 0; padding-bottom: 40px; overflow: visible; }
+  .hm-bottom { position: static; margin-top: 40px; }
+  .scroll-cue { position: static; margin-top: 24px; }
+  /* The 220x120px cards and ~72px kinetic type are sized for a full-width
+     desktop band — at this width they no longer fit the ticker's height
+     and start overlapping the carousel below it. */
+  .hm-ticker { height: 30px; }
+  .hm-t-word { font-size: clamp(0.45rem, 1.6vw, 0.7rem); padding: 4px 6px; }
+  .hm-t-card { width: 42px; height: 23px; border-radius: 6px; }
+  .hm-t-sep { margin: 0 7px; font-size: 0.45rem; }
+}
+@media (max-width: 640px) {
+  .hm-name-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hm-bottom { grid-template-columns: 1fr; padding: 24px; text-align: left; }
+  .hm-bottom .hm-note { text-align: left; margin: 0; }
+  .hm-bottom .hm-contact { text-align: left; align-items: flex-start; }
+  .hm-ticker { height: 22px; }
+  .hm-t-word { font-size: clamp(0.4rem, 1.9vw, 0.5rem); padding: 3px 4px; }
+  .hm-t-card { width: 30px; height: 17px; border-radius: 4px; }
+  .hm-t-sep { margin: 0 4px; font-size: 0.4rem; }
+}
+
+/* ================= Grid of project cards ================= */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 64px 0 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.section-head h2 { font-size: 1.4rem; }
+.section-head .view-all { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 220px;
+  gap: 14px;
+}
+.project-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  color: #f4f2ec;
+}
+.project-card.tone-dark { background: linear-gradient(160deg, #2a2824, #0d0c0b); }
+.project-card.tone-light { background: linear-gradient(160deg, #efece3, #d8d3c6); color: var(--ink); }
+.project-card .pc-n { position: absolute; top: 16px; left: 20px; font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.65; }
+.project-card .pc-t { font-family: var(--font-serif); font-size: 1.3rem; }
+.project-card .pc-s { font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.7; margin-top: 2px; }
+.project-card .pc-link {
+  position: absolute; top: 16px; right: 20px;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  display: flex; align-items: center; gap: 6px;
+  opacity: 0.85;
+}
+.project-card:hover { transform: translateY(-3px); transition: transform 0.25s ease; }
+
+/* Real cover photo: cover the card and scrim it so overlaid text stays legible */
+.project-card.has-photo, .belt-card.has-photo {
+  background-size: cover;
+  background-position: center;
+}
+.project-card.has-photo::before, .belt-card.has-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0,0,0,0.38) 0%, transparent 22%, transparent 35%, rgba(0,0,0,0.72) 100%);
+}
+.project-card.has-photo, .belt-card.has-photo { color: #f4f2ec !important; }
+
+.project-grid > a:nth-child(1) { grid-column: span 3; grid-row: span 2; }
+.project-grid > a:nth-child(2) { grid-column: span 3; grid-row: span 2; }
+.project-grid > a:nth-child(n+3) { grid-column: span 2; }
+
+@media (max-width: 1000px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-grid > a:nth-child(1),
+  .project-grid > a:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+  .project-grid > a:nth-child(n+3) { grid-column: span 1; }
+}
+
+/* ================= Discipline sections (home page, static grids) ================= */
+.discipline-section {
+  padding: 90px 0 20px;
+  border-top: 1px solid var(--line);
+}
+.discipline-section:first-of-type { border-top: none; padding-top: 10px; }
+.discipline-head { margin-bottom: 36px; max-width: 640px; }
+.discipline-head .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+.discipline-head h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+.discipline-head p { margin-top: 12px; color: var(--ink-soft); line-height: 1.6; }
+
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.in-view { opacity: 1; transform: none; }
+
+/* ================= About page ================= */
+.about-hero { padding-top: 10px; margin-bottom: 48px; }
+.about-name {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-top: 10px;
+}
+.about-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.about-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  filter: grayscale(1);
+  transition: filter 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.9, 0.32, 1);
+}
+.about-photo:hover { filter: grayscale(0); transform: scale(1.02); }
+.about-bio {
+  line-height: 1.8;
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+  max-width: 62ch;
+}
+.about-meta {
+  display: flex;
+  gap: 80px;
+  margin-top: 40px;
+}
+.about-meta-value { margin-top: 10px; font-size: 1.05rem; }
+.about-disc-list { margin-top: 10px; gap: 12px; }
+.about-disc-list a { font-size: 0.95rem; }
+@media (max-width: 760px) {
+  .about-layout { grid-template-columns: 1fr; }
+  .about-photo { max-width: 260px; }
+  .about-meta { flex-direction: column; gap: 28px; }
+}
+
+.about-section { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+.about-section .eyebrow { margin-bottom: 24px; }
+
+.about-exp-list { display: flex; flex-direction: column; }
+.about-exp-item, .about-edu-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+.about-exp-item:first-child, .about-edu-item:first-child { border-top: none; padding-top: 0; }
+.about-exp-period { color: var(--ink-faint); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.02em; padding-top: 3px; }
+.about-exp-role { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+.about-exp-company { margin-top: 4px; color: var(--ink-soft); font-size: 0.95rem; }
+.about-exp-highlights { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.about-exp-highlights li {
+  list-style: none;
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.about-exp-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.65em;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+@media (max-width: 640px) {
+  .about-exp-item, .about-edu-item { grid-template-columns: 1fr; gap: 8px; }
+}
+
+.about-pills { margin-top: 0; }
+
+.about-lang-list { display: flex; gap: 48px; flex-wrap: wrap; }
+.about-lang-item { display: flex; flex-direction: column; gap: 6px; }
+.about-lang-name { font-size: 1.05rem; font-weight: 700; }
+.about-lang-level { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* ================= Contact page ================= */
+.contact-hero { padding-top: 10px; max-width: 640px; }
+.contact-heading {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-top: 10px;
+}
+.contact-sub { margin-top: 22px; line-height: 1.7; color: var(--ink-soft); font-size: 1.1rem; }
+.contact-email {
+  display: inline-block;
+  margin-top: 48px;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-bottom: 8px;
+}
+.contact-email::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+}
+.contact-email::before {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ink);
+  transition: width 0.4s cubic-bezier(0.22, 0.9, 0.32, 1);
+  z-index: 1;
+}
+.contact-email:hover::before { width: 100%; }
+.contact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px 64px;
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 640px) {
+  .contact-meta { flex-direction: column; gap: 28px; }
+}
+
+/* ================= Case study ================= */
+.cs-hero {
+  padding-top: calc(var(--nav-h) + 60px);
+  padding-bottom: 40px;
+}
+.cs-hero .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); }
+.cs-hero h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin-top: 10px; }
+.cs-hero .meta { display: flex; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
+.cs-hero .meta div { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-soft); }
+.cs-hero .meta span { display: block; color: var(--ink-faint); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+
+.cs-cover {
+  width: 100%;
+  height: 60vh;
+  border-radius: 20px;
+  margin: 30px 0 60px;
+  display: block;
+  object-fit: cover;
+  /* Anchor left so nothing on the left edge gets cropped — any cropping
+     needed to fill the frame comes from the right side instead. */
+  object-position: left center;
+}
+.cs-body { max-width: 1100px; margin: 0 auto; padding-bottom: 100px; }
+.cs-text { max-width: 780px; margin: 0 auto; }
+.cs-text p { line-height: 1.75; color: var(--ink-soft); font-size: 1.05rem; }
+/* Behance-style stack: one image per row, full width, natural aspect ratio
+   (no crop), small gap, rendered in the exact numbered order from the
+   project's source files — a scrollable read of the full design, not a
+   scattered grid. */
+.cs-gallery { display: flex; flex-direction: column; gap: 6px; margin: 50px 0; }
+.cs-gallery .g-block { width: 100%; height: auto; display: block; border-radius: 3px; }
+.cs-collage { display: grid; gap: 6px; }
+.cs-collage img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 3px; }
+@media (max-width: 640px) {
+  .cs-collage { grid-template-columns: 1fr !important; }
+}
+
+.cs-nextprev {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 48px 60px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* generic placeholder block helper */
+.ph-block { background: linear-gradient(160deg, #2a2824, #0d0c0b); }
+.ph-block.tone-light { background: linear-gradient(160deg, #efece3, #d8d3c6); }
+
+/* ================= Footer ================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 60px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+.site-footer a { color: var(--ink-soft); }
+/* Standalone (non-sidebar) pages, e.g. case studies: footer isn't nested in
+   .content, so it needs its own width cap + inset to line up with .wrap. */
+.site-footer-wrap { max-width: 1600px; margin: 0 auto; padding: 60px 48px; }

@@ -1,0 +1,232 @@
+{
+  "person": {
+    "name": "Sreenath Pasupulati Kannaiah",
+    "initial": "Sree",
+    "title": "Creative Designer",
+    "location": "Germany",
+    "tagline": "Turning good ideas into brands, motion and film people can't scroll past.",
+    "bio": "I'm Sreenath Pasupulati Kannaiah, a creative designer based in Germany with over four years of experience creating brand identities, packaging, editorial systems, and visual campaigns. I believe the strongest design is built where strategy meets simplicity—work that solves problems, communicates clearly, and leaves a lasting impression. As my practice evolves, I'm expanding that same approach into motion graphics and video to create more complete brand experiences.",
+    "email": "pksreenath02@gmail.com",
+    "phone": "+49 1632923648",
+    "photo": "assets/profile/sreenath.jpg",
+    "socials": [
+      { "label": "Behance", "url": "https://www.behance.net/Sreenathpasupulati" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/sreenath-pasupulati-kannaiah-717a58166/" }
+    ],
+    "skills": [
+      "Art Direction & Campaign Design",
+      "Digital Marketing Creatives & Social Media Design",
+      "Brand Identity Systems & Visual Guidelines",
+      "Landing Page & Newsletter Design",
+      "Motion Graphics & Short-Form Video",
+      "Storytelling, Typography & Editorial Design",
+      "Performance-Oriented Creative Thinking",
+      "AI-Assisted Concept Development"
+    ],
+    "tools": [
+      "Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Adobe After Effects",
+      "Adobe Premiere Pro", "Figma", "Canva", "Adobe Firefly", "Midjourney", "ChatGPT"
+    ],
+    "languages": [
+      { "name": "English", "level": "Fluent" },
+      { "name": "German", "level": "A2 — Actively Learning" }
+    ],
+    "experience": [
+      {
+        "company": "Merck Group",
+        "role": "Creative Designer — Contract",
+        "location": "Darmstadt, Germany & Bengaluru, India · Hybrid",
+        "period": "Sep 2025 — Jun 2026",
+        "highlights": [
+          "Developed brand-compliant visual concepts and digital campaign assets for ongoing communication and marketing needs.",
+          "Created illustrations, presentation materials and adaptable creative assets using Adobe Creative Cloud, balancing consistency with changing briefs and timelines.",
+          "Used AI-assisted workflows to explore visual directions and accelerate concept development while maintaining brand quality."
+        ]
+      },
+      {
+        "company": "Merck Group",
+        "role": "Creative Motion Graphic Designer — Work Study",
+        "location": "Darmstadt, Germany · On-site",
+        "period": "Apr 2024 — Aug 2025",
+        "highlights": [
+          "Designed digital visuals, motion graphics and short-form video for internal and external brand communications.",
+          "Created social-ready assets and edited video under tight turnarounds, iterating quickly from stakeholder feedback.",
+          "Collaborated with production and communication teams on shoot planning, post-production and visual storytelling."
+        ]
+      },
+      {
+        "company": "Merck Group",
+        "role": "External Motion Graphic Designer — Full-Time",
+        "location": "Bengaluru, India · On-site",
+        "period": "Aug 2021 — Mar 2024",
+        "highlights": [
+          "Designed motion graphics and digital creatives for brand campaigns, product launches, newsletters and marketing communications.",
+          "Built reusable templates, layouts, icons and visual systems to improve consistency and production efficiency across formats.",
+          "Worked with cross-functional and marketing teams to align creative output with brand and communication goals."
+        ]
+      },
+      {
+        "company": "Times Internet",
+        "role": "Freelance Video Editor",
+        "location": "Remote",
+        "period": "Apr 2021 — Oct 2021",
+        "highlights": [
+          "Edited video content for a digital media and news platform, adapting edits for timely online publication."
+        ]
+      },
+      {
+        "company": "Light House Media Centre",
+        "role": "Motion Graphic Designer — Internship",
+        "location": "Bengaluru, India",
+        "period": "Jan 2021 — May 2021",
+        "highlights": [
+          "Supported motion graphics and photo-editing work as part of an early-career creative production team."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.A. Visual Communication",
+        "school": "Berlin School of Business & Innovation",
+        "period": "Feb 2024 — Sep 2025"
+      },
+      {
+        "degree": "B.Sc. Multimedia & Animation",
+        "school": "Vellore Institute of Technology",
+        "period": "Jul 2018 — Jun 2021"
+      }
+    ]
+  },
+  "categories": [
+    {
+      "slug": "graphic-design",
+      "label": "Graphic Design",
+      "shortLabel": "Graphic Design"
+    },
+    {
+      "slug": "motion-graphics",
+      "label": "Motion Graphics",
+      "shortLabel": "Motion Graphics"
+    },
+    {
+      "slug": "video-editing",
+      "label": "Video Editing",
+      "shortLabel": "Video Editing"
+    }
+  ],
+  "projects": [
+    {
+      "slug": "void", "category": "graphic-design", "index": 3, "title": "VOID", "subtitle": "Brand Identity",
+      "tone": "dark", "role": "Brand Identity & Art Direction", "year": "2026", "tools": "Illustrator, Photoshop, Cinema 4D",
+      "disciplines": ["Brand Identity", "Campaign Design"],
+      "blurb": "A precision-engineered identity for a performance-wear system built on control, focus and relentless forward motion.",
+      "cover": "assets/work/void/cover.jpg",
+      "gallery": [
+        "assets/work/void/g1.jpg", "assets/work/void/g2.jpg", "assets/work/void/g3.jpg", "assets/work/void/g4.jpg",
+        "assets/work/void/g5.jpg", "assets/work/void/g6.jpg", "assets/work/void/g7.jpg", "assets/work/void/g8.jpg",
+        "assets/work/void/g9.jpg", "assets/work/void/g10.jpg", "assets/work/void/g11.jpg", "assets/work/void/g12.jpg",
+        "assets/work/void/g13.jpg", "assets/work/void/g14.jpg", "assets/work/void/g15.jpg", "assets/work/void/g16.jpg",
+        "assets/work/void/g17.jpg", "assets/work/void/g18.jpg", "assets/work/void/g19.jpg", "assets/work/void/g20.jpg",
+        "assets/work/void/g21.jpg"
+      ],
+      "caseStudy": {
+        "brief": "VOID needed an identity that spoke to athletes who push beyond limits — not through noise, but through precision. The brand had to feel engineered, not decorated.",
+        "approach": "The mark is built around a forward slash — a symbol of motion, direction and controlled energy — paired with a squared-off wordmark and a single acid-yellow accent against near-black. Every touchpoint, from transit takeovers to product tags, was built to whisper rather than shout.",
+        "result": "A performance system where restraint becomes the loudest statement: “VOID isn't seen. It's felt.”"
+      }
+    },
+    {
+      "slug": "stratum", "category": "graphic-design", "index": 5, "title": "Stratum", "subtitle": "Packaging Design",
+      "tone": "light", "role": "Packaging & Structural Design", "year": "2026", "tools": "Photoshop, Dimension, Illustrator",
+      "disciplines": ["Brand Identity", "Packaging Design"],
+      "blurb": "A monochrome packaging system for a skincare line, built around material honesty.",
+      "cover": "assets/work/stratum/cover.jpg",
+      "gallery": [
+        "assets/work/stratum/g1.jpg", "assets/work/stratum/g2.jpg", "assets/work/stratum/g3.jpg", "assets/work/stratum/g4.jpg",
+        "assets/work/stratum/g5.jpg", "assets/work/stratum/g6.jpg", "assets/work/stratum/g7.jpg", "assets/work/stratum/g8.jpg",
+        "assets/work/stratum/g9.jpg", "assets/work/stratum/g10.jpg", "assets/work/stratum/g11.jpg", "assets/work/stratum/g12.jpg",
+        "assets/work/stratum/g13.jpg", "assets/work/stratum/g14.jpg"
+      ],
+      "caseStudy": {
+        "brief": "Stratum needed packaging that felt clinical and premium at once — “where materials meet skin” — across four products (cleanser, serum, moisturizer, sunscreen) that had to read as one family from across a shelf.",
+        "approach": "A restrained monochrome palette, textured matte surfaces and a strict numbering system (01–04) let the line read as a considered system rather than four separate SKUs, with German-language copy for the target market.",
+        "result": "A quiet, tactile packaging suite that lets texture and typography carry the premium feel instead of color or ornament."
+      }
+    },
+    {
+      "slug": "origin-83", "category": "graphic-design", "index": 1, "title": "Origin 83", "subtitle": "Coffee Branding",
+      "tone": "dark", "role": "Brand Identity & Packaging", "year": "2026", "tools": "Illustrator, Photoshop",
+      "disciplines": ["Brand Identity", "Packaging Design"],
+      "blurb": "A single-origin coffee brand inspired by the landscapes and tribal heritage of Araku Valley, India.",
+      "cover": "assets/work/origin-83/cover.jpg",
+      "gallery": [
+        "assets/work/origin-83/g1.jpg", "assets/work/origin-83/g2.jpg", "assets/work/origin-83/g3.jpg", "assets/work/origin-83/g4.jpg",
+        "assets/work/origin-83/g5.jpg", "assets/work/origin-83/g6.jpg", "assets/work/origin-83/g7.jpg", "assets/work/origin-83/g8.jpg",
+        "assets/work/origin-83/g9.jpg", "assets/work/origin-83/g10.jpg", "assets/work/origin-83/g11.jpg", "assets/work/origin-83/g12.jpg",
+        "assets/work/origin-83/g13.jpg", "assets/work/origin-83/g14.jpg", "assets/work/origin-83/g15.jpg", "assets/work/origin-83/g16.jpg",
+        "assets/work/origin-83/g17.jpg", "assets/work/origin-83/g18.jpg", "assets/work/origin-83/g19.jpg", "assets/work/origin-83/g20.jpg"
+      ],
+      "caseStudy": {
+        "brief": "Origin 83 — named for the 83° East longitude running through Araku Valley — needed an identity that honored the region's indigenous coffee-growing heritage without resorting to cliche “rustic” branding.",
+        "approach": "A mark built from the valley's mountain silhouette, a curated palette (Ivory, Valley Blue, Origin Gold, Tribal Land) drawn directly from the landscape and tribal textiles, and editorial-weight serif type carry the story across pod packaging, bags and collateral.",
+        "result": "“Brewed through generations” — a brand that reads as heritage-led rather than decorative, rooted in a specific place and its people."
+      }
+    },
+    {
+      "slug": "bunny", "category": "graphic-design", "index": 2, "title": "Bunny", "subtitle": "AI Brand Identity",
+      "tone": "dark", "role": "Brand Identity & Web Design", "year": "2026", "tools": "Figma, Illustrator, Cinema 4D",
+      "disciplines": ["Product Branding", "UX/UI"],
+      "blurb": "A sculptural, quiet identity for an AI companion built around presence rather than spectacle.",
+      "cover": "assets/work/bunny/cover.jpg",
+      "gallery": [
+        "assets/work/bunny/g1.jpg", "assets/work/bunny/g2.jpg", "assets/work/bunny/g3.jpg", "assets/work/bunny/g4.jpg",
+        "assets/work/bunny/g5.jpg", "assets/work/bunny/g6.jpg", "assets/work/bunny/g7.jpg", "assets/work/bunny/g8.jpg",
+        "assets/work/bunny/g9.jpg", "assets/work/bunny/g10.jpg", "assets/work/bunny/g11.jpg", "assets/work/bunny/g12.jpg",
+        "assets/work/bunny/g13.jpg", "assets/work/bunny/g14.jpg", "assets/work/bunny/g15.jpg", "assets/work/bunny/g16.jpg",
+        "assets/work/bunny/g17.jpg", "assets/work/bunny/g18.jpg", "assets/work/bunny/g19.jpg", "assets/work/bunny/g20.jpg",
+        "assets/work/bunny/g21.jpg", "assets/work/bunny/g22.jpg", "assets/work/bunny/g23.jpg", "assets/work/bunny/g24.jpg",
+        "assets/work/bunny/g25.jpg", "assets/work/bunny/g26.jpg", "assets/work/bunny/g27.jpg", "assets/work/bunny/g28.jpg",
+        "assets/work/bunny/g29.jpg", "assets/work/bunny/g30.jpg"
+      ],
+      "caseStudy": {
+        "brief": "Bunny is an AI companion positioned around “quiet intelligence” — the brand needed to feel calm and present, not like another loud AI product chasing attention.",
+        "approach": "A soft sculptural mark — a continuous form suggesting two rounded ears — sits over a moss-and-cream palette, paired with a serif/sans pairing that lets the product feel considered rather than clinical, extended into a full marketing site.",
+        "result": "“Quiet Intelligence. Always by your side.” — an identity that stands apart from typical AI branding by choosing restraint over spectacle."
+      }
+    },
+    {
+      "slug": "making", "category": "graphic-design", "index": 4, "title": "Making", "subtitle": "Editorial Design",
+      "tone": "light", "role": "Editorial Design & Art Direction", "year": "2026", "tools": "InDesign, Photoshop",
+      "disciplines": ["Editorial Design", "Typography"],
+      "blurb": "A conceptual editorial magazine exploring how design and material honesty shape tomorrow's world.",
+      "cover": "assets/work/making/cover.jpg",
+      "gallery": [
+        "assets/work/making/g1.jpg", "assets/work/making/g2.jpg", "assets/work/making/g3.jpg", "assets/work/making/g4.jpg",
+        "assets/work/making/g5.jpg", "assets/work/making/g6.jpg", "assets/work/making/g7.jpg", "assets/work/making/g8.jpg",
+        "assets/work/making/g9.jpg", "assets/work/making/g10.jpg", "assets/work/making/g11.jpg", "assets/work/making/g12.jpg",
+        "assets/work/making/g13.jpg", "assets/work/making/g14.jpg", "assets/work/making/g15.jpg", "assets/work/making/g16.jpg",
+        "assets/work/making/g17.jpg", "assets/work/making/g18.jpg", "assets/work/making/g19.jpg"
+      ],
+      "caseStudy": {
+        "brief": "MAKING is a self-directed editorial project — each issue built around a single guiding question about design and culture. Issue 02 asks: “How do today's designers shape tomorrow's world?”",
+        "approach": "An organic blob-shaped graphic system contrasts with a disciplined editorial grid; the issue explores its theme through the lens of material honesty — timber, stone, paper, concrete — using full-bleed photography and restrained serif/sans typography.",
+        "result": "A cohesive editorial identity that treats the magazine itself as a design object, not just a container for articles."
+      }
+    },
+
+    { "slug": "showreel-2026", "category": "motion-graphics", "index": 1, "title": "Showreel 2026", "subtitle": "Motion Reel", "tone": "dark", "blurb": "A curated reel of motion work from the past year." },
+    { "slug": "orbit", "category": "motion-graphics", "index": 2, "title": "Orbit", "subtitle": "Product Launch", "tone": "dark", "blurb": "Kinetic motion graphics for a tech product launch." },
+    { "slug": "pulse", "category": "motion-graphics", "index": 3, "title": "Pulse", "subtitle": "App Onboarding", "tone": "light", "blurb": "Friendly, fluid motion for an app onboarding sequence." },
+    { "slug": "strata", "category": "motion-graphics", "index": 4, "title": "Strata", "subtitle": "Title Sequence", "tone": "dark", "blurb": "A cinematic title sequence built around layered typography." },
+    { "slug": "flux", "category": "motion-graphics", "index": 5, "title": "Flux", "subtitle": "Social Motion", "tone": "light", "blurb": "Snackable, high-energy motion for social campaigns." },
+    { "slug": "lumen-motion", "category": "motion-graphics", "index": 6, "title": "Lumen", "subtitle": "Brand Animation", "tone": "dark", "blurb": "Ambient brand animation for a wellness product." },
+
+    { "slug": "wayfarer", "category": "video-editing", "index": 1, "title": "Wayfarer", "subtitle": "Travel Documentary", "tone": "dark", "blurb": "A short-form travel documentary edited for pace and mood." },
+    { "slug": "afterglow", "category": "video-editing", "index": 2, "title": "Afterglow", "subtitle": "Music Video", "tone": "dark", "blurb": "A moody, color-graded music video edit." },
+    { "slug": "founders-cut", "category": "video-editing", "index": 3, "title": "Founder's Cut", "subtitle": "Brand Film", "tone": "light", "blurb": "A narrative brand film for a founder-led startup." },
+    { "slug": "tempo", "category": "video-editing", "index": 4, "title": "Tempo", "subtitle": "Commercial Edit", "tone": "dark", "blurb": "A fast-paced commercial edit built for broadcast." },
+    { "slug": "verse", "category": "video-editing", "index": 5, "title": "Verse", "subtitle": "Fashion Film", "tone": "light", "blurb": "An elegant, restrained edit for a fashion campaign film." },
+    { "slug": "field-notes", "category": "video-editing", "index": 6, "title": "Field Notes", "subtitle": "Docu-Series Episode", "tone": "dark", "blurb": "An observational documentary episode edit." },
+    { "slug": "afterparty", "category": "video-editing", "index": 7, "title": "Afterparty", "subtitle": "Event Recap", "tone": "dark", "blurb": "A high-energy recap edit for a live event." }
+  ]
+}
