@@ -152,8 +152,8 @@
   else { addEventListener("scroll", () => requestAnimationFrame(scrubTick), { passive: true }); addEventListener("resize", scrubTick); scrubTick(); }
 
   // marquee: runs only while it is on screen, reacts to scroll speed and direction (no layout reads per frame)
-  const mq = $(".mq-track");
-  if (mq && !reduced) {
+  $$(".mq-track").forEach(mq => {
+    if (reduced) return;
     let lastS = scrollY, vel = 0, dir = -1, mx = 0, slow = 1, spd = -0.6, half = mq.scrollWidth / 2, on = false, raf = 0;
     addEventListener("resize", () => { half = mq.scrollWidth / 2; });
     mq.addEventListener("mouseenter", () => slow = .15); mq.addEventListener("mouseleave", () => slow = 1);
@@ -164,7 +164,17 @@
       raf = on ? requestAnimationFrame(tick) : 0;
     };
     new IntersectionObserver(es => es.forEach(en => { on = en.isIntersecting; if (on && !raf) { lastS = scrollY; raf = requestAnimationFrame(tick); } })).observe(mq);
-  }
+  });
+
+  // featured: image slider (arrows page through three at a time; swipe works too)
+  $$(".fs").forEach(fs => {
+    const tr = $(".fs-track", fs), cnt = $(".fs-count", fs), prev = $(".fs-btn[data-d='-1']", fs), next = $(".fs-btn[data-d='1']", fs), n = tr.children.length;
+    const upd = () => { const per = Math.max(1, Math.round(tr.clientWidth / tr.children[0].offsetWidth)), pages = Math.ceil(n / per), pg = Math.min(pages, Math.round(tr.scrollLeft / tr.clientWidth) + 1);
+      cnt.textContent = pg + " / " + pages; prev.disabled = tr.scrollLeft < 4; next.disabled = tr.scrollLeft + tr.clientWidth > tr.scrollWidth - 4; };
+    $$(".fs-btn", fs).forEach(b => b.addEventListener("click", () => { tr.scrollBy({ left: +b.dataset.d * (tr.clientWidth + 6), behavior: reduced ? "auto" : "smooth" }); setTimeout(upd, 650); }));
+    let tk = 0; tr.addEventListener("scroll", () => { if (!tk) tk = requestAnimationFrame(() => { tk = 0; upd(); }); }, { passive: true });
+    tr.addEventListener("scrollend", upd); addEventListener("resize", upd); upd();
+  });
 
   // project pages: live "Image 03 / 22" counter
   const ic = $(".img-count");
