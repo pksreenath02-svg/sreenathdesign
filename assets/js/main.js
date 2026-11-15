@@ -78,12 +78,14 @@
     show(0); if (items.length > 1) setInterval(() => { i = (i + 1) % items.length; show(i); }, int);
   });
 
-  // motion cards: loops run whenever the card is on screen
-  const vio = new IntersectionObserver(es => es.forEach(e => {
-    const c = e.target, v = $("video", c);
-    if (e.isIntersecting) { if (!v.src) v.src = c.dataset.loop; v.play().catch(() => {}); } else v.pause();
-  }), { threshold: .4 });
-  $$(".project-card[data-loop]").forEach(c => { const v = $("video", c); if (v) { v.addEventListener("playing", () => c.classList.add("is-playing")); vio.observe(c); } });
+  // film cards play like GIFs while on screen: film-only projects always, the others when "Motion" is chosen
+  let filterNow = "all"; const seen = new Set();
+  const wants = c => c.dataset.auto || filterNow === "m";
+  const sync = c => { const v = $("video", c); if (!v) return;
+    if (seen.has(c) && wants(c)) { if (!v.src) v.src = c.dataset.loop; v.play().catch(() => {}); } else { v.pause(); c.classList.remove("is-playing"); } };
+  const vio = new IntersectionObserver(es => es.forEach(e => { e.isIntersecting ? seen.add(e.target) : seen.delete(e.target); sync(e.target); }), { threshold: .3 });
+  const loopCards = $$(".project-card[data-loop]");
+  loopCards.forEach(c => { const v = $("video", c); if (v) { v.addEventListener("playing", () => c.classList.add("is-playing")); vio.observe(c); } });
 
   if (fine) {
     $$(".project-card").forEach(c => c.addEventListener("mouseenter", () => setMark(c.dataset.c)));
@@ -175,7 +177,7 @@
 
   // work filters: All / Graphic / Motion (cards carry data-tags="g m")
   const grids = $$("[data-grid]"), fbtns = $$(".filter");
-  const applyF = f => { fbtns.forEach(b => b.classList.toggle("is-on", b.dataset.f === f)); grids.forEach(g => $$(".project-card", g).forEach(cd => cd.classList.toggle("is-out", f !== "all" && !(cd.dataset.tags || "").split(" ").includes(f)))); };
+  const applyF = f => { filterNow = f; loopCards.forEach(sync); fbtns.forEach(b => b.classList.toggle("is-on", b.dataset.f === f)); grids.forEach(g => $$(".project-card", g).forEach(cd => cd.classList.toggle("is-out", f !== "all" && !(cd.dataset.tags || "").split(" ").includes(f)))); };
   fbtns.forEach(b => b.addEventListener("click", () => applyF(b.dataset.f)));
   const pre = grids.length && grids[0].dataset.pre; if (pre && pre !== "all") applyF(pre);
 
@@ -185,6 +187,9 @@
     if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
   }), { threshold: .35 });
   $$(".feat-media").forEach(m => { const v = $("video", m); if (v) { v.addEventListener("playing", () => m.classList.add("is-playing")); fio.observe(m); } });
+
+  // remember an explicit language choice (the head script otherwise follows the browser language)
+  $$("[data-lang]").forEach(a => a.addEventListener("click", () => { try { localStorage.setItem("lang", a.dataset.lang); } catch (e) {} }));
 
   // burger
   const bb = $(".burger-button"), bm = $(".burger-mobile");
