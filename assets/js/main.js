@@ -173,6 +173,19 @@
     ims.forEach(m => cio.observe(m));
   }
 
+  // work filters: All / Graphic / Motion (cards carry data-tags="g m")
+  const grids = $$("[data-grid]"), fbtns = $$(".filter");
+  const applyF = f => { fbtns.forEach(b => b.classList.toggle("is-on", b.dataset.f === f)); grids.forEach(g => $$(".project-card", g).forEach(cd => cd.classList.toggle("is-out", f !== "all" && !(cd.dataset.tags || "").split(" ").includes(f)))); };
+  fbtns.forEach(b => b.addEventListener("click", () => applyF(b.dataset.f)));
+  const pre = grids.length && grids[0].dataset.pre; if (pre && pre !== "all") applyF(pre);
+
+  // featured rows: the project's film plays while the row is on screen
+  const fio = new IntersectionObserver(es => es.forEach(e => {
+    const v = $("video", e.target); if (!v) return;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), { threshold: .35 });
+  $$(".feat-media").forEach(m => { const v = $("video", m); if (v) { v.addEventListener("playing", () => m.classList.add("is-playing")); fio.observe(m); } });
+
   // burger
   const bb = $(".burger-button"), bm = $(".burger-mobile");
   if (bb && bm) {
