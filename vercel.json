@@ -3,6 +3,74 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/portfolio-pdf",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "(?i)de.*"
+        }
+      ],
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio-pdf",
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_EN.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/de/portfolio-pdf",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "(?i)de.*"
+        }
+      ],
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/de/portfolio-pdf",
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_EN.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio.pdf",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "(?i)de.*"
+        }
+      ],
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio.pdf",
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_EN.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "(?i)de.*"
+        }
+      ],
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
+      "permanent": false
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_EN.pdf",
+      "permanent": false
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true
