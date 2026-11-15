@@ -101,34 +101,6 @@
   const loopCards = $$(".project-card[data-loop]");
   loopCards.forEach(c => { const v = $("video", c); if (v) { v.addEventListener("playing", () => c.classList.add("is-playing")); vio.observe(c); } });
 
-  // nav: one black pill marks the page; on hover it stretches over to the link under the pointer, then settles
-  const links = $(".nav-links"), pill = $(".nav-pill");
-  if (links && pill) {
-    links.classList.add("js");
-    const ls = $$(".nav-link", links), cur = $(".nav-link.is-active", links); let at = null;
-    const go = (el, instant) => {
-      const W = links.clientWidth, l = el.offsetLeft, r = W - l - el.offsetWidth;
-      const prev = at ? at.offsetLeft : l, right = l > prev;
-      pill.style.setProperty("--dl", right ? ".09s" : "0s"); pill.style.setProperty("--dr", right ? "0s" : ".09s");
-      if (instant) pill.classList.add("no-tr");
-      pill.style.setProperty("--l", l + "px"); pill.style.setProperty("--r", r + "px");
-      if (instant) { void pill.offsetWidth; pill.classList.remove("no-tr"); }
-      ls.forEach(x => x.classList.toggle("is-lit", x === el)); pill.classList.add("is-on"); at = el;
-    };
-    const home = () => { if (cur) go(cur, !at); else { pill.classList.remove("is-on"); ls.forEach(x => x.classList.remove("is-lit")); at = null; } };
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(home); addEventListener("resize", () => { at = null; home(); });
-    ls.forEach(l => {
-      l.addEventListener("mouseenter", () => go(l, !at));
-      l.addEventListener("mousedown", () => pill.classList.add("is-press"));
-      l.addEventListener("mouseup", () => pill.classList.remove("is-press"));
-      if (fine) {
-        l.addEventListener("mousemove", e => { const r = l.getBoundingClientRect(), dx = (e.clientX - r.left - r.width / 2) / r.width, dy = (e.clientY - r.top - r.height / 2) / r.height; $(".roll", l).style.transform = `translate(${dx * 6}px,${dy * 4}px)`; });
-        l.addEventListener("mouseleave", () => { $(".roll", l).style.transform = ""; pill.classList.remove("is-press"); });
-      }
-    });
-    links.addEventListener("mouseleave", home);
-  }
-
   if (fine) {
     $$(".project-card").forEach(c => c.addEventListener("mouseenter", () => setMark(c.dataset.c)));
 
