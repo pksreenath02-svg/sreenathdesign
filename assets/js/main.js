@@ -191,6 +191,15 @@
   // remember an explicit language choice (the head script otherwise follows the browser language)
   $$("[data-lang]").forEach(a => a.addEventListener("click", () => { try { localStorage.setItem("lang", a.dataset.lang); } catch (e) {} }));
 
+  // statement headline: words rise in order, film boxes open, and play only while on screen
+  const sth = $(".st-h1");
+  if (sth) {
+    $$(".st-w>span, .st-chip", sth).forEach((el, i) => el.style.setProperty("--i", i));
+    setTimeout(() => document.body.classList.add("st-in"), 80);
+    const cio = new IntersectionObserver(es => es.forEach(e => { const v = $("video", e.target); if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 });
+    $$(".st-chip", sth).forEach(ch => cio.observe(ch));
+  }
+
   // burger
   const bb = $(".burger-button"), bm = $(".burger-mobile");
   if (bb && bm) {
