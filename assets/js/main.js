@@ -65,8 +65,9 @@
   if (box) {
     // wait for the logo intro (if it is playing) so the name animation is seen from its first frame
     const w0 = Math.max(0, (window.__introEnd || 0) - performance.now());
-    setTimeout(() => hero.classList.add("is-in"), w0 + 40);
-    setTimeout(() => { $$(".home-title-word").forEach(b => b.classList.add("is-animated")); box.classList.add("is-animated"); }, w0 + 650);
+    // and for the page fade (about 0.35 s), so the name builds on a settled page
+    setTimeout(() => hero.classList.add("is-in"), w0 + 320);
+    setTimeout(() => { $$(".home-title-word").forEach(b => b.classList.add("is-animated")); box.classList.add("is-animated"); }, w0 + 820);
     const cap = $(".hero-cap-t");
     const items = $$(".home-title-image", box); let i = 0;
     const load = m => { if (m && !m.getAttribute("src") && m.dataset.src) { m.src = m.dataset.src; m.preload = "auto"; } };
