@@ -8,7 +8,7 @@
         {
           "type": "header",
           "key": "accept-language",
-          "value": "(?i)de.*"
+          "value": "^(de|DE).*$"
         }
       ],
       "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
@@ -25,7 +25,7 @@
         {
           "type": "header",
           "key": "accept-language",
-          "value": "(?i)de.*"
+          "value": "^(de|DE).*$"
         }
       ],
       "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
@@ -42,7 +42,7 @@
         {
           "type": "header",
           "key": "accept-language",
-          "value": "(?i)de.*"
+          "value": "^(de|DE).*$"
         }
       ],
       "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
@@ -59,7 +59,7 @@
         {
           "type": "header",
           "key": "accept-language",
-          "value": "(?i)de.*"
+          "value": "^(de|DE).*$"
         }
       ],
       "destination": "/assets/pdf/Sreenath_Pasupulati_Kannaiah_Portfolio_2026_DE.pdf",
