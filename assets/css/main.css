@@ -492,7 +492,18 @@ header.is-scrolled .nav-logo{background:transparent}
 .intro.is-gone{opacity:0;pointer-events:none}
 .intro-on .nav-logo .logo-svg{opacity:0}
 .intro-done .nav-logo .logo-svg{opacity:1;transition:none}
-.wipe{position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;background:var(--wc,#000);color:var(--wt,#fff);transform:translateY(100%);pointer-events:none}
+/* page transitions: header stays, content fades out lifting slightly, the next page settles in */
+@view-transition{navigation:auto}
+header{view-transition-name:site-header}
+.intro-on header{view-transition-name:none}
+::view-transition-group(site-header){animation:none}
+::view-transition-old(site-header),::view-transition-new(site-header){animation-duration:.25s}
+::view-transition-old(root){animation:vt-out .32s cubic-bezier(.4,0,1,1) both}
+::view-transition-new(root){animation:vt-in .7s cubic-bezier(.22,1,.36,1) .06s both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-10px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(18px)}}
+html.is-leaving main,html.is-leaving footer{opacity:0;transform:translateY(-10px);transition:opacity .23s ease,transform .23s ease}
+.wipe{display:none!important;position:fixed;inset:0;z-index:3000;display:flex;align-items:center;justify-content:center;background:var(--wc,#000);color:var(--wt,#fff);transform:translateY(100%);pointer-events:none}
 .wipe-t{font-size:5vw;letter-spacing:-.05em;line-height:1;overflow:hidden;padding:0 4vw;text-align:center}
 .wipe-t span{display:inline-block;transform:translateY(110%);transition:transform .5s cubic-bezier(.2,.75,.2,1) .12s}
 .wipe.is-in .wipe-t span,.wipe.is-out .wipe-t span{transform:none}

@@ -277,15 +277,14 @@
     $$("a:not([data-cursor]), button").forEach(el => { el.addEventListener("mouseenter", () => cur.classList.add("is-link")); el.addEventListener("mouseleave", () => cur.classList.remove("is-link")); });
   } else if (cur) cur.remove();
 
-  // page wipe in the destination's colour (one click, starts at once)
-  $$("a[href]").forEach(a => {
-    const h = a.getAttribute("href"); if (!h || /^(mailto:|tel:|https?:|#)/.test(h) || a.target === "_blank" || a.hasAttribute("download")) return;
-    a.addEventListener("click", e => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; e.preventDefault();
-      const c = a.dataset.c || "#000", go = a.href, tt = a.dataset.t || ""; try { sessionStorage.setItem("wipe", c); sessionStorage.setItem("wipet", tt); } catch (err) {}
-      if (wipe) { paintWipe(c, tt); wipe.classList.remove("is-out"); void wipe.offsetWidth; wipe.classList.add("is-in"); }
-      setTimeout(() => { location.href = go; }, tt ? 520 : 380);
+  // page change: browsers with cross-document view transitions animate it natively (see CSS);
+  // the rest get a short fade-out before leaving, never a full-screen panel
+  if (!("onpagereveal" in window)) {
+    $$("a[href]").forEach(a => {
+      const h = a.getAttribute("href"); if (!h || /^(mailto:|tel:|https?:|#)/.test(h) || a.target === "_blank" || a.hasAttribute("download") || /\.pdf$/i.test(h)) return;
+      a.addEventListener("click", e => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; e.preventDefault(); const go = a.href;
+        root.classList.add("is-leaving"); setTimeout(() => { location.href = go; }, reduced ? 0 : 230); });
     });
-  });
-  addEventListener("pageshow", e => { if (e.persisted && wipe) wipe.classList.remove("is-in", "is-out"); });
+  }
+  addEventListener("pageshow", e => { if (e.persisted) root.classList.remove("is-leaving"); });
 })();
