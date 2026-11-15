@@ -154,12 +154,12 @@
   // marquee: runs only while it is on screen, reacts to scroll speed and direction (no layout reads per frame)
   $$(".mq-track").forEach(mq => {
     if (reduced) return;
-    let lastS = scrollY, vel = 0, dir = -1, mx = 0, slow = 1, spd = -0.6, half = mq.scrollWidth / 2, on = false, raf = 0;
+    const base = +mq.dataset.speed || 0.6; let lastS = scrollY, vel = 0, dir = -1, mx = 0, slow = 1, spd = -base, half = mq.scrollWidth / 2, on = false, raf = 0;
     addEventListener("resize", () => { half = mq.scrollWidth / 2; });
     mq.addEventListener("mouseenter", () => slow = .15); mq.addEventListener("mouseleave", () => slow = 1);
     const tick = () => {
       const y = scrollY, d = y - lastS; lastS = y; vel += (d - vel) * .08; if (Math.abs(d) > .5) dir = d > 0 ? -1 : 1;
-      const target = dir * (0.6 + Math.min(14, Math.abs(vel) * .5)) * slow; spd += (target - spd) * .06; mx += spd;
+      const target = dir * (base + Math.min(14, Math.abs(vel) * .5)) * slow; spd += (target - spd) * .06; mx += spd;
       if (mx <= -half) mx += half; if (mx > 0) mx -= half; mq.style.transform = `translate3d(${mx.toFixed(2)}px,0,0)`;
       raf = on ? requestAnimationFrame(tick) : 0;
     };
