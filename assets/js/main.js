@@ -229,6 +229,18 @@
     new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; const v = vs[cur]; if (vis) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), { threshold: .15 }).observe(fr);
   }
 
+  // light / dark: the new theme spreads in a circle from the toggle
+  $$(".theme-toggle").forEach(btn => btn.addEventListener("click", e => {
+    const dark = root.getAttribute("data-theme") !== "dark";
+    const apply = () => { if (dark) root.setAttribute("data-theme", "dark"); else root.removeAttribute("data-theme"); try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (err) {} };
+    if (!document.startViewTransition || reduced) { apply(); return; }
+    const r = btn.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2, R = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    root.classList.add("theme-vt");
+    const vt = document.startViewTransition(apply);
+    vt.ready.then(() => root.animate({ clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${R}px at ${x}px ${y}px)`] }, { duration: 700, easing: "cubic-bezier(.65,0,.35,1)", pseudoElement: "::view-transition-new(root)" })).catch(() => {});
+    vt.finished.finally(() => root.classList.remove("theme-vt"));
+  }));
+
   // burger
   const bb = $(".burger-button"), bm = $(".burger-mobile");
   if (bb && bm) {

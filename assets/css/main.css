@@ -661,6 +661,41 @@ a:hover .roll::after,button:hover .roll::after{transform:scaleX(1);transform-ori
 .mq-item:hover{color:var(--mark,#3A5BC7);-webkit-text-stroke-color:var(--mark,#3A5BC7)}
 }
 @media (hover:hover) and (pointer:fine){.fs-btn:not(:disabled):hover{border-color:#000}}
+
+/* ---------- dark theme (html[data-theme=dark]); work imagery stays untouched ---------- */
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:max(1.9vw,26px);height:max(1.9vw,26px);padding:0;border:0;border-radius:50%;background:none;color:var(--fg);cursor:pointer;transition:transform .6s var(--soft-ease),opacity .3s}
+.theme-toggle svg{width:62%;height:62%;transition:transform .7s var(--soft-ease)}
+[data-theme=dark] .theme-toggle svg{transform:rotate(180deg)}
+@media (hover:hover) and (pointer:fine){.theme-toggle:hover{transform:scale(1.12)}}
+.theme-vt header{view-transition-name:none}
+.theme-vt::view-transition-old(root),.theme-vt::view-transition-new(root){animation:none;mix-blend-mode:normal}
+[data-theme=dark]{--bg:#0f0f0f;--fg:#f2f0eb;--muted:#f2f0eb8c;--soft:#1b1b1a;--border:#f2f0eb1f;color-scheme:dark}
+[data-theme=dark] :focus-visible{outline-color:var(--fg)}
+[data-theme=dark] .progress i{background:var(--pc,var(--fg))}
+[data-theme=dark] .logo-svg,[data-theme=dark] .intro-logo{color:var(--fg)}
+[data-theme=dark] header.is-scrolled{background:#0f0f0fd9}
+[data-theme=dark] .nav-link::after,[data-theme=dark] .lang-switch a::after{background:var(--fg)}
+[data-theme=dark] .nav-link.is-active,[data-theme=dark] .nav-link:hover,[data-theme=dark] .lang-switch a.is-active,[data-theme=dark] .lang-switch a:not(.is-active):hover{color:var(--fg)}
+[data-theme=dark] .nav-button{background:var(--fg);color:var(--bg);box-shadow:inset 0 0 0 1px var(--fg)}
+[data-theme=dark] .nav-button-icon{filter:none}
+[data-theme=dark] .nav-button:hover{background:var(--bg);color:var(--fg)}
+[data-theme=dark] .nav-button:hover .nav-button-icon{filter:invert(1)}
+[data-theme=dark] img[src*="assets/icons/"]{filter:invert(.94)}
+[data-theme=dark] .nav-button img[src*="assets/icons/"],[data-theme=dark] .pill-dark img[src*="assets/icons/"],[data-theme=dark] .footer-big-icon img[src*="assets/icons/"],[data-theme=dark] .lock-ic img[src*="assets/icons/"],[data-theme=dark] .project-locked .pill-dark img[src*="assets/icons/"]{filter:none}
+[data-theme=dark] .nav-button:hover img[src*="assets/icons/"],[data-theme=dark] .footer-big:hover .footer-big-icon img[src*="assets/icons/"]{filter:invert(1)}
+[data-theme=dark] .pill-dark{background:var(--fg);color:var(--bg)}
+[data-theme=dark] .pill:hover{background:#2a2a28}
+[data-theme=dark] .pill-dark:hover{background:#d9d6cf}
+[data-theme=dark] .filter{color:var(--fg)}
+[data-theme=dark] .filter.is-on{background:var(--fg);color:var(--bg)}
+[data-theme=dark] .img-count b,[data-theme=dark] .stage-cap b,[data-theme=dark] .hero-link,[data-theme=dark] .project-card:hover .project-card-meta,[data-theme=dark] .project-back:hover,[data-theme=dark] .footer-pdf:hover{color:var(--fg)}
+[data-theme=dark] .mq-item:nth-child(4n+3){-webkit-text-stroke-color:var(--fg)}
+[data-theme=dark] .mq-mark{background:var(--mark,var(--fg))}
+[data-theme=dark] .fs-btn:not(:disabled):hover{border-color:var(--fg)}
+[data-theme=dark] .footer{background:#171716;border-top:1px solid var(--border)}
+[data-theme=dark] .lang-switch a{color:var(--muted)}
+[data-theme=dark] .lang-switch a.is-active{color:var(--fg)}
+@media (max-width:768px){[data-theme=dark] .lang-switch a{color:var(--fg)}.theme-toggle{width:8vw;height:8vw}}
 /* screenshot mode */
 .shot *{transition:none!important}
 .shot .text-in,.shot .scroll-in{transform:none!important;animation:none!important}.shot .project-card,.shot .project-image,.shot .about-photo-wrapper,.shot .reveal{opacity:1!important;transform:none!important}.shot .border{transform:none!important;animation:none!important}.shot .home-title-word,.shot .hc{transform:none!important}.shot .home-title-image-box{clip-path:none!important}.shot .hero-cap{opacity:1!important}.shot .project-card-box{clip-path:none!important}.shot .scrub .wd{opacity:1!important}.shot .footer-big .roll{background-position:0 0!important}.shot .project-image{clip-path:none!important;scale:1!important}.shot .project-card-image{transform:none!important;opacity:1!important}.shot .st-w>span{transform:none!important}.shot .stage-frame{animation:none!important}.shot .st-cap{opacity:1!important}.shot .st-chip{transform:translateY(-.06em) scale(1)!important}.shot .home-title-image-box{opacity:1!important;transform:none!important}.shot .title-chip{transform:none!important}.shot .about-photo{transform:none!important}.shot .home-title-image:first-child{opacity:1}
