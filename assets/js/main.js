@@ -26,7 +26,21 @@
   try { const c = sessionStorage.getItem("wipe"); if (c && wipe) { paintWipe(c, sessionStorage.getItem("wipet") || ""); wipe.classList.add("is-out"); sessionStorage.removeItem("wipe"); sessionStorage.removeItem("wipet"); } } catch (e) {}
 
   // logo draws itself on load
-  const logo = $(".nav-logo"); if (logo && !shot) { logo.classList.add("logo-intro"); setTimeout(() => logo.classList.remove("logo-intro"), 1900); }
+  const logo = $(".nav-logo"), root = document.documentElement, intro = $(".intro");
+  window.__introEnd = 0;
+  if (intro && root.classList.contains("intro-on")) {
+    // first visit: the logo draws itself (about 1 s), then flies into its place in the header and the page appears
+    try { sessionStorage.setItem("intro", "1"); } catch (e) {}
+    const il = $(".intro-logo", intro); let done = false, t1, t2;
+    const finish = () => { if (done) return; done = true; clearTimeout(t1); clearTimeout(t2);
+      root.classList.add("intro-done"); intro.classList.add("is-gone"); setTimeout(() => { root.classList.remove("intro-on"); intro.remove(); }, 600); };
+    const fly = () => { const a = il.getBoundingClientRect(), b = logo ? $(".logo-svg", logo).getBoundingClientRect() : null;
+      intro.classList.add("is-fly");
+      if (b && b.width) il.style.transform = `translate(${b.left - a.left}px,${b.top - a.top}px) scale(${b.width / a.width})`;
+      t2 = setTimeout(finish, 750); };
+    t1 = setTimeout(fly, 1250); window.__introEnd = performance.now() + 1750;
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(ev => addEventListener(ev, () => { if (!done) { window.__introEnd = 0; finish(); } }, { once: true, passive: true }));
+  } else if (logo && !shot) { logo.classList.add("logo-intro"); setTimeout(() => logo.classList.remove("logo-intro"), 1900); }
 
   // text-in (on load) stagger
   $$(".text-in").forEach((el, i) => { if (!el.style.getPropertyValue("--stagger-delay")) el.style.setProperty("--stagger-delay", (0.2 + i * 0.07) + "s"); });
@@ -218,7 +232,8 @@
   const sth = $(".st-h1");
   if (sth) {
     $$(".st-w>span, .st-chip", sth).forEach((el, i) => el.style.setProperty("--i", i));
-    setTimeout(() => document.body.classList.add("st-in"), 80);
+    const go = () => document.body.classList.add("st-in"), wait = Math.max(80, (window.__introEnd || 0) - performance.now());
+    setTimeout(go, wait); addEventListener("wheel", go, { once: true, passive: true }); addEventListener("touchstart", go, { once: true, passive: true });
     const cio = new IntersectionObserver(es => es.forEach(e => { const v = $("video", e.target); if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 });
     $$(".st-chip", sth).forEach(ch => cio.observe(ch));
   }
