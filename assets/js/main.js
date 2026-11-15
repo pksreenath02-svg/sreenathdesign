@@ -210,6 +210,17 @@
     $$(".st-chip", sth).forEach(ch => cio.observe(ch));
   }
 
+  // stage: the three headline films play one after another, only while on screen
+  const stg = $(".stage");
+  if (stg) {
+    const fr = $(".stage-frame", stg), vs = $$("video", fr), nm = $(".stage-now b", stg), ct = $(".stage-count b", stg); let cur = 0, vis = false;
+    const show = n => { vs.forEach((v, k) => { v.classList.toggle("is-on", k === n); if (k !== n) v.pause(); });
+      cur = n; const v = vs[n]; fr.href = v.dataset.href; nm.textContent = v.dataset.name; ct.textContent = String(n + 1).padStart(2, "0");
+      if (!v.src) v.src = v.dataset.src; v.currentTime = 0; if (vis) v.play().catch(() => {}); };
+    vs.forEach(v => v.addEventListener("ended", () => show((cur + 1) % vs.length)));
+    new IntersectionObserver(es => es.forEach(e => { vis = e.isIntersecting; const v = vs[cur]; if (vis) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), { threshold: .15 }).observe(fr);
+  }
+
   // burger
   const bb = $(".burger-button"), bm = $(".burger-mobile");
   if (bb && bm) {
