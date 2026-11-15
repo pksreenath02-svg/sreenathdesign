@@ -28,17 +28,21 @@
   // logo draws itself on load
   const logo = $(".nav-logo"), root = document.documentElement, intro = $(".intro");
   window.__introEnd = 0;
+  // clicking the logo replays the intro on the page it opens
+  if (logo) logo.addEventListener("click", () => { try { sessionStorage.setItem("introNow", "1"); } catch (e) {} });
   if (intro && root.classList.contains("intro-on")) {
     // first visit: the logo draws itself (about 1 s), then flies into its place in the header and the page appears
     try { sessionStorage.setItem("intro", "1"); } catch (e) {}
     const il = $(".intro-logo", intro); let done = false, t1, t2;
+    // hand-over: only once the flying logo has fully landed, swap to the header logo in the same frame (no fade, no jump)
     const finish = () => { if (done) return; done = true; clearTimeout(t1); clearTimeout(t2);
-      root.classList.add("intro-done"); intro.classList.add("is-gone"); setTimeout(() => { root.classList.remove("intro-on"); intro.remove(); }, 600); };
+      root.classList.add("intro-done"); intro.remove(); root.classList.remove("intro-on"); };
     const fly = () => { const a = il.getBoundingClientRect(), b = logo ? $(".logo-svg", logo).getBoundingClientRect() : null;
       intro.classList.add("is-fly");
       if (b && b.width) il.style.transform = `translate(${b.left - a.left}px,${b.top - a.top}px) scale(${b.width / a.width})`;
-      t2 = setTimeout(finish, 750); };
-    t1 = setTimeout(fly, 1250); window.__introEnd = performance.now() + 1750;
+      il.addEventListener("transitionend", e => { if (e.propertyName === "transform") finish(); }, { once: true });
+      t2 = setTimeout(finish, 1100); };
+    t1 = setTimeout(fly, 1250); window.__introEnd = performance.now() + 2100;
     ["wheel", "touchstart", "keydown", "mousedown"].forEach(ev => addEventListener(ev, () => { if (!done) { window.__introEnd = 0; finish(); } }, { once: true, passive: true }));
   } else if (logo && !shot) { logo.classList.add("logo-intro"); setTimeout(() => logo.classList.remove("logo-intro"), 1900); }
 
