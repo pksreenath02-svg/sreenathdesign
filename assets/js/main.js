@@ -212,6 +212,7 @@
     setTimeout(go, wait); addEventListener("wheel", go, { once: true, passive: true }); addEventListener("touchstart", go, { once: true, passive: true });
     const cio = new IntersectionObserver(es => es.forEach(e => { const v = $("video", e.target); if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), { threshold: .2 });
     $$(".st-chip", sth).forEach(ch => cio.observe(ch));
+    $$(".st-fm-box").forEach(ch => cio.observe(ch));
   }
 
   // stage: the three headline films play one after another, only while on screen

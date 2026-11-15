@@ -290,6 +290,7 @@ header.is-scrolled .nav-logo{background:transparent}
 .st-w>span{display:inline-block;transform:translateY(105%);transition:transform 1.2s var(--soft-ease) calc(var(--i,0) * 55ms)}
 .st-in .st-w>span{transform:none}
 .st-light{font-weight:200}
+.st-films{display:none}
 .st-line{display:block}
 .st-g{white-space:nowrap}
 .mq-s{margin:3.6vw calc(-1 * var(--g)) 0;padding:1vw 0}
@@ -557,7 +558,7 @@ header.is-scrolled .nav-logo{background:transparent}
   .viewer button{font-size:var(--xs);padding:2.4vw 3.6vw}.viewer-close{top:4vw;right:4vw}.viewer-prev{left:3vw;top:auto;bottom:5vw;transform:none}.viewer-next{right:3vw;top:auto;bottom:5vw;transform:none}.viewer-count{bottom:7vw}
   .next-project-mobile{display:block;margin:10vw auto 0;width:fit-content}
   .footer{margin:24vw 0 0;padding:14vw var(--g) 6vw}
-  .st-hero{padding:8vw var(--g) 5vw}.st-br{display:none}.st-line{display:inline}.st-g{white-space:normal}.mq-s{margin:8vw calc(-1 * var(--g)) 0;padding:3vw 0}.mq-s .mq-item{font-size:5vw;padding:0 3vw}.mq-s .mq-mark{width:4vw;height:2.3vw;border-radius:2px}.mq-logo{height:4.6vw}.mq-logo.is-o83{height:3.6vw}.marquee.mq-home{margin-top:8vw;padding:2.4vw 0}.mq-home .mq-item{font-size:6vw;padding:0 2vw}.mq-home .mq-mark{width:4vw;height:2.3vw}.stage{padding-top:8vw}.stage-cap{padding-top:3vw;gap:3vw}.stage-now{gap:1.2vw}.st-cap{top:calc(100% + 1.2vw);gap:1.2vw;right:0;overflow:hidden}.st-cap b{font-weight:400;overflow:hidden;text-overflow:ellipsis}.st-cap em{display:none}.fs{margin-top:3vw}.fs-track{grid-auto-columns:calc((100% - 1.5vw) / 2);gap:1.5vw}.fs-nav{gap:2vw;margin-top:3vw}.st-open{margin-bottom:4vw}.st-h1{font-size:11vw;line-height:1.32}.st-chip{border-radius:5px}.st-foot{flex-direction:column;align-items:flex-start;gap:4vw;margin-top:8vw;padding-top:4vw}
+  .st-hero{padding:8vw var(--g) 5vw}.st-br{display:none}.st-line{display:inline}.st-g{white-space:normal}.st-h1 .st-film{display:none}.st-films{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;margin-top:6vw}.st-fm{display:flex;flex-direction:column;gap:1.6vw;min-width:0}.st-fm-box{position:relative;display:block;aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:var(--soft)}.st-fm-box video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.st-fm-cap{font-size:var(--xxs);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mq-s{margin:8vw calc(-1 * var(--g)) 0;padding:3vw 0}.mq-s .mq-item{font-size:5vw;padding:0 3vw}.mq-s .mq-mark{width:4vw;height:2.3vw;border-radius:2px}.mq-logo{height:4.6vw}.mq-logo.is-o83{height:3.6vw}.marquee.mq-home{margin-top:8vw;padding:2.4vw 0}.mq-home .mq-item{font-size:6vw;padding:0 2vw}.mq-home .mq-mark{width:4vw;height:2.3vw}.stage{padding-top:8vw}.stage-cap{padding-top:3vw;gap:3vw}.stage-now{gap:1.2vw}.st-cap{top:calc(100% + 1.2vw);gap:1.2vw;right:0;overflow:hidden}.st-cap b{font-weight:400;overflow:hidden;text-overflow:ellipsis}.st-cap em{display:none}.fs{margin-top:3vw}.fs-track{grid-auto-columns:calc((100% - 1.5vw) / 2);gap:1.5vw}.fs-nav{gap:2vw;margin-top:3vw}.st-open{margin-bottom:4vw}.st-h1{font-size:11vw;line-height:1.1}.st-chip{border-radius:5px}.st-foot{flex-direction:column;align-items:flex-start;gap:4vw;margin-top:8vw;padding-top:4vw}
   .footer-cta{padding-bottom:10vw}
   .footer-big{font-size:10.4vw;gap:3vw;margin-top:4vw;flex-wrap:wrap}
   .footer-big .text-box{text-wrap:wrap}
@@ -581,7 +582,7 @@ header.is-scrolled .nav-logo{background:transparent}
   .filters{gap:1vw;padding:1vw}.filter{padding:2.2vw 4vw}
   .work-grid.is-three{display:flex;flex-direction:column;gap:9vw}
   .home-strip{grid-template-columns:1fr;gap:6vw;margin:18vw var(--g) 0;padding-top:6vw}.strip-facts{gap:3vw}
-  .work-title{font-size:13vw;padding-bottom:6vw}.work-hero .filters{margin-top:6vw}
+  .work-title{font-size:11vw;line-height:1.1;padding-bottom:3vw}.work-hero .page-tags{margin-top:1vw;line-height:1.4}.img-count{display:none!important}.work-hero .filters{margin-top:6vw}
   .case-panel{grid-template-columns:1fr;gap:5vw;padding:6vw}.case-item{gap:1.5vw}
   .reel{padding:0 var(--g) 14vw}.reel-head{margin-bottom:3vw}.reel-video .pv-play{bottom:11vw;left:3vw;padding:2.4vw 4vw;font-size:var(--xs)}
   .mq-item{font-size:13vw;padding:0 4vw}.mq-mark{width:9vw;height:5vw;border-radius:1vw}.marquee{padding:4vw 0;margin-top:16vw}.img-count{right:12vw;top:.6vw}
