@@ -69,11 +69,19 @@ header.is-scrolled .nav-logo{background:transparent}
 @keyframes logo-bar-in{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .nav-links-wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 .nav-links{position:relative;display:flex;align-items:center;padding:.25vw;border-radius:99px;background:var(--soft)}
-.nav-pill{position:absolute;top:.25vw;bottom:.25vw;left:0;width:0;border-radius:99px;background:#000;opacity:0;transition:opacity .3s}
+.nav-pill{position:absolute;top:.25vw;bottom:.25vw;left:var(--l,0);right:var(--r,100%);border-radius:99px;background:#000;opacity:0;transform:scale(.6);transition:left .6s var(--soft-ease) var(--dl,0s),right .6s var(--soft-ease) var(--dr,0s),opacity .35s,transform .5s var(--soft-ease)}
+.nav-pill.is-on{opacity:1;transform:none}
+.nav-pill.is-press{transform:scale(.94);transition-duration:.6s,.6s,.35s,.15s}
+.nav-pill.no-tr{transition:opacity .35s,transform .5s var(--soft-ease)}
 .nav-lens{position:absolute;top:.25vw;bottom:.25vw;left:0;width:0;border-radius:99px;background:#fff;box-shadow:0 .15vw .6vw #0000000f,0 0 0 1px #0000000a;opacity:0;transform:scale(.85);transition:transform .8s var(--soft-ease),width .8s var(--soft-ease),opacity .4s}
 .nav-lens.is-on{opacity:1}
 .nav-link{position:relative;z-index:1;display:block;padding:.6vw 1.15vw;font-size:var(--xs);border-radius:99px;color:#000;transition:color .5s var(--soft-ease)}
 .nav-link.is-active{color:#fff}
+.nav-links.js .nav-link{color:#000}.nav-links.js .nav-link.is-lit{color:#fff}
+.nav-link{display:flex;align-items:center}
+.nav-ext{width:0;opacity:0;margin-left:0;filter:invert(1);transform:translate(-4px,4px);transition:width .5s var(--soft-ease),margin .5s var(--soft-ease),opacity .4s,transform .5s var(--soft-ease)}
+.nav-link:not(.is-lit) .nav-ext{filter:none}
+.nav-link:hover .nav-ext{width:.65vw;margin-left:.35vw;opacity:1;transform:none}
 .nav-link .roll{transition:transform .8s var(--soft-ease)}
 .nav-right{display:flex;align-items:center;gap:.5vw}
 .lang-switch{position:relative;display:flex;padding:.25vw;border-radius:99px;background:var(--soft);font-size:var(--xs)}
@@ -270,7 +278,7 @@ header.is-scrolled .nav-logo{background:transparent}
 /* home: statement headline (Geist light) with film boxes inside the sentence */
 .st-hero{display:flex;flex-direction:column;padding:4.5vw var(--g) 1.6vw}
 .st-open{margin-bottom:1.6vw;font-size:var(--xxs);letter-spacing:.01em;color:var(--muted)}
-.st-h1{font-weight:500;font-size:6.3vw;line-height:1.24;letter-spacing:-.045em;max-width:94vw}
+.st-h1{font-weight:500;font-size:5.67vw;line-height:1.24;letter-spacing:-.045em;max-width:94vw}
 .st-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
 .st-w>span{display:inline-block;transform:translateY(105%);transition:transform 1.2s var(--soft-ease) calc(var(--i,0) * 55ms)}
 .st-in .st-w>span{transform:none}
@@ -579,7 +587,7 @@ header.is-scrolled .nav-logo{background:transparent}
 .filter:not(.is-on):hover{color:var(--accent)}
 .feat-media:hover video{opacity:1}
 .hero-link:hover img{animation:arr-ur .9s var(--soft-ease)}
-.nav-link:not(.is-active):hover{color:var(--accent)}
+
 .footer-link:hover{color:#fff}
 .nav-button:hover .nav-button-fill{transform:translate(-50%,-50%) scale(1)}
 .nav-button:hover .nav-button-icon{animation:arr-ur .9s var(--soft-ease)}
