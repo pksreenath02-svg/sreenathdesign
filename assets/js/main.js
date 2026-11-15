@@ -236,14 +236,21 @@
     const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
     const toggle = () => v.paused ? v.play() : v.pause(), silent = p.classList.contains("is-silent");
     const label = () => { if (snd) snd.textContent = v.muted ? snd.dataset.off : snd.dataset.on; }; label();
-    const withSound = () => { v.muted = false; v.loop = false; v.currentTime = 0; v.play().catch(() => {}); p.classList.add("is-sound"); label(); };
+    const withSound = () => { v.muted = false; v.loop = false; if (v.ended || v.currentTime > v.duration - .5) v.currentTime = 0; v.play().catch(() => {}); p.classList.add("is-sound"); label(); };
     v.addEventListener("play", () => p.classList.add("is-playing")); v.addEventListener("pause", () => p.classList.remove("is-playing"));
-    v.addEventListener("timeupdate", () => { fill.style.width = (v.currentTime / (v.duration || 1) * 100) + "%"; tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration || 0); });
+    let drag = false;
+    v.addEventListener("timeupdate", () => { if (drag) return; fill.style.width = (v.currentTime / (v.duration || 1) * 100) + "%"; tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration || 0); });
     $(".pv-play", p).addEventListener("click", e => { e.stopPropagation(); silent ? toggle() : withSound(); });
     v.addEventListener("click", () => { if (!silent && !p.classList.contains("is-sound")) withSound(); else toggle(); });
     if (snd) snd.addEventListener("click", e => { e.stopPropagation(); v.muted = !v.muted; if (!v.muted) p.classList.add("is-sound"); label(); });
     v.addEventListener("ended", () => { v.loop = true; v.muted = true; v.play().catch(() => {}); p.classList.remove("is-sound"); label(); });
-    bar.addEventListener("click", e => { const r = bar.getBoundingClientRect(); v.currentTime = (e.clientX - r.left) / r.width * v.duration; });
+    // timeline: click or drag anywhere on it; the film stays exactly where you let go
+    const seek = e => { const r = bar.getBoundingClientRect(), x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); fill.style.width = x * 100 + "%"; if (v.duration) { v.currentTime = x * v.duration; tm.textContent = fmt(v.currentTime) + " / " + fmt(v.duration); } };
+    bar.addEventListener("pointerdown", e => { e.preventDefault(); e.stopPropagation(); drag = true; bar.classList.add("is-drag"); try { bar.setPointerCapture(e.pointerId); } catch (err) {} seek(e); });
+    bar.addEventListener("pointermove", e => { if (drag) seek(e); });
+    const stop = e => { if (!drag) return; drag = false; bar.classList.remove("is-drag"); seek(e); };
+    bar.addEventListener("pointerup", stop); bar.addEventListener("pointercancel", () => { drag = false; bar.classList.remove("is-drag"); });
+    bar.addEventListener("click", e => e.stopPropagation());
   });
 
   // footer: Hamburg time, back to top
