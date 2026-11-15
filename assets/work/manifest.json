@@ -1,0 +1,31 @@
+{
+ "iga": {
+  "slides": 5,
+  "c": 23
+ },
+ "void": {
+  "slides": 4,
+  "g": 21
+ },
+ "pg": {
+  "slides": 4,
+  "g": 18,
+  "c": 18
+ },
+ "o83": {
+  "slides": 4,
+  "g": 20
+ },
+ "bunny": {
+  "slides": 3,
+  "g": 30
+ },
+ "stratum": {
+  "slides": 0,
+  "g": 14
+ },
+ "making": {
+  "slides": 0,
+  "g": 19
+ }
+}

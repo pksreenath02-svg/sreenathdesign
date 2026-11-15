@@ -2,6 +2,115 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/motion-graphics",
+      "destination": "/motion-design",
+      "permanent": true
+    },
+    {
+      "source": "/video-editing",
+      "destination": "/motion-design",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/bunny",
+      "destination": "/graphic/bunny",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/making",
+      "destination": "/graphic/making",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/origin-83",
+      "destination": "/graphic/o83",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/stratum",
+      "destination": "/graphic/stratum",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/strata",
+      "destination": "/graphic/stratum",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/void",
+      "destination": "/graphic/void",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/showreel-2026",
+      "destination": "/motion-design",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/afterglow",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/afterparty",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/field-notes",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/flux",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/founders-cut",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/lumen-motion",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/orbit",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/pulse",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/tempo",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/verse",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/case-study/wayfarer",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }
