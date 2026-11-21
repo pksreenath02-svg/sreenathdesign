@@ -700,3 +700,16 @@ a:hover .roll::after,button:hover .roll::after{transform:scaleX(1);transform-ori
 .shot *{transition:none!important}
 .shot .text-in,.shot .scroll-in{transform:none!important;animation:none!important}.shot .project-card,.shot .project-image,.shot .about-photo-wrapper,.shot .reveal{opacity:1!important;transform:none!important}.shot .border{transform:none!important;animation:none!important}.shot .home-title-word,.shot .hc{transform:none!important}.shot .home-title-image-box{clip-path:none!important}.shot .hero-cap{opacity:1!important}.shot .project-card-box{clip-path:none!important}.shot .scrub .wd{opacity:1!important}.shot .footer-big .roll{background-position:0 0!important}.shot .project-image{clip-path:none!important;scale:1!important}.shot .project-card-image{transform:none!important;opacity:1!important}.shot .st-w>span{transform:none!important}.shot .stage-frame{animation:none!important}.shot .st-cap{opacity:1!important}.shot .st-chip{transform:translateY(-.06em) scale(1)!important}.shot .home-title-image-box{opacity:1!important;transform:none!important}.shot .title-chip{transform:none!important}.shot .about-photo{transform:none!important}.shot .home-title-image:first-child{opacity:1}
 @media (prefers-reduced-motion:reduce){*:not(.intro):not(.intro *):not(.home-hero *):not(.st-h1 *):not(.nav-logo *){animation-duration:.01s!important;transition-duration:.01s!important}}
+
+/* legal pages + footer legal links */
+.footer-legal{display:flex;gap:1.4em}
+.footer-legal a{color:inherit;text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:#f2f0eb}
+.legal{max-width:780px;margin:0 auto;padding:clamp(7.5rem,16vw,12rem) max(20px,4vw) 6rem;font-size:1rem;line-height:1.7}
+.legal h1{font-size:clamp(2.3rem,6.4vw,4.2rem);font-weight:500;letter-spacing:-.035em;line-height:1.04;margin:0 0 2.2rem}
+.legal h2{font-size:1.12rem;font-weight:600;margin:2.4rem 0 .6rem;letter-spacing:-.01em}
+.legal p,.legal li{margin:0 0 .85rem;opacity:.86}
+.legal ul{padding-left:1.2em;margin:0 0 .85rem}
+.legal a{text-decoration:underline;text-underline-offset:3px}
+.legal .legal-meta{opacity:.55;font-size:.85rem;margin-top:2.6rem}
+@media (max-width:700px){.footer-bottom{flex-wrap:wrap;row-gap:1.2em}.footer-legal{gap:1.4em;flex-basis:100%;grid-column:1/-1;order:3}}
